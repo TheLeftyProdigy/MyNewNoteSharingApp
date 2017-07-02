@@ -1,0 +1,63 @@
+{
+  "project_info": {
+    "project_number": "800758132194",
+    "firebase_url": "https://note-sharing-app.firebaseio.com",
+    "project_id": "note-sharing-app",
+    "storage_bucket": "note-sharing-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:800758132194:android:16349f30affa8d31",
+        "android_client_info": {
+          "package_name": "com.example.anand.mynotesharingapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "800758132194-4v24cr3tbdank2hr9te8gqc2bar12kq9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.anand.mynotesharingapp",
+            "certificate_hash": "19074ecba3ebcf9300201109c9c8127d9727bde3"
+          }
+        },
+        {
+          "client_id": "800758132194-k8deih9tsjfc1mo4097qolm0ph02o884.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.anand.mynotesharingapp",
+            "certificate_hash": "a29d13455c1f5e9d3e8146886981a765c17bd579"
+          }
+        },
+        {
+          "client_id": "800758132194-12a36jiv2dcme59rtpb48p7h8kla8qb9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCMQY1tEwxI_95Zoy10e7NMSUj9APrnSaY"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "800758132194-12a36jiv2dcme59rtpb48p7h8kla8qb9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

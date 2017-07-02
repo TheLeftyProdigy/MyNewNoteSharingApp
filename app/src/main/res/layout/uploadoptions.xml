@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Button
+        android:layout_width="243dp"
+        android:layout_height="58.44dp"
+        android:text="UPLOAD PDF"
+        android:textSize="34dp"
+        android:textColor="#FFFFFF"
+        android:id="@+id/uploadPDF"
+        android:background="#3D3566"
+        android:layout_gravity="center"
+        android:layout_marginTop="196px"/>
+    
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:text="or"
+        android:textColor="#111111"
+        android:layout_marginTop="80dp"
+        android:layout_marginBottom="80dp"
+        android:layout_gravity="center"
+        android:id="@+id/orID"/>
+
+    <Button
+        android:layout_width="250dp"
+        android:layout_height="58.44dp"
+        android:text="UPLOAD IMAGE"
+        android:textSize="34dp"
+        android:textColor="#FFFFFF"
+        android:background="#3D3566"
+        android:id="@+id/uploadjpeg"
+        android:layout_gravity="center"/>
+
+</LinearLayout>

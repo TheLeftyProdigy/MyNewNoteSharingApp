@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Give it a Title"
+        android:textSize="25dp"
+        android:layout_marginLeft="42dp"
+        android:layout_marginTop="127px"
+        android:textColor="#3D3566"/>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:layout_marginLeft="42dp"
+        android:hint="Enter Title Here"
+        android:id="@+id/title"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Subject?"
+        android:textSize="25dp"
+        android:layout_marginLeft="42dp"
+        android:layout_marginTop="60px"
+        android:textColor="#3D3566"/>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:layout_marginLeft="42dp"
+        android:hint="Enter Subject Here"
+        android:id="@+id/subject"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Related Tags"
+        android:textSize="25dp"
+        android:layout_marginLeft="42dp"
+        android:layout_marginTop="60px"
+        android:textColor="#3D3566"/>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:layout_marginLeft="42dp"
+        android:hint="Enter Tags Here"
+        android:id="@+id/tags"
+        />
+
+
+    <Button
+        android:layout_width="243dp"
+        android:layout_height="58.44dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        android:textSize="34dp"
+        android:text="Done"
+        android:textColor="#FFFFFF"
+        android:background="#3D3566"
+        android:id="@+id/sendto1"/>
+</LinearLayout>

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.example.anand.mynotesharingapp.MainActivity">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="1">
+
+    <ImageView
+        android:layout_marginTop="105px"
+        android:id="@+id/imageView1"
+        android:layout_width="194dp"
+        android:layout_height="105dp"
+        android:src="@drawable/logoforapp"
+        android:layout_gravity="center"
+        android:layout_weight="0.29" />
+
+    <TextView
+        android:layout_marginTop="85px"
+        android:text="Sign-in using Email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:layout_gravity="center"
+        android:id="@+id/textView" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textEmailAddress"
+        android:ems="10"
+        android:textSize="20dp"
+        android:id="@+id/editText"
+        android:hint="Email ID" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:textSize="20dp"
+        android:id="@+id/editText2"
+        android:hint="Password" />
+
+    <Button
+        android:text="SIGN IN"
+        android:textSize="20dp"
+        android:layout_width="96dp"
+        android:layout_height="34dp"
+        android:id="@+id/button"
+        android:textColor="#FFFFFF"
+        android:background="#3D3566"
+        android:layout_gravity="center"/>
+
+    <TextView
+        android:layout_marginTop="30dp"
+        android:text="Sign Up By Clicking Here!"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView2"
+        android:layout_gravity="center"
+        android:clickable="true"
+        />
+
+
+    <com.facebook.login.widget.LoginButton
+        android:id="@+id/fblogin_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_below="@+id/logo"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        />
+
+    <com.google.android.gms.common.SignInButton
+        android:id="@+id/goobutton"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="30dp" />
+
+
+</LinearLayout>
+</ScrollView>
