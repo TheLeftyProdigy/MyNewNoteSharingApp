@@ -58,6 +58,7 @@ public class ProfileSetup extends AppCompatActivity implements View.OnClickListe
     Uri finalimgUri;
     String UserID;
     String Name;
+    String CollegeName="";
 
    String filePath;
     UserDetails userinfo;
@@ -182,7 +183,7 @@ public class ProfileSetup extends AppCompatActivity implements View.OnClickListe
     {
 
         String Key=mDatabase.child(UserID).push().getKey();
-        userinfo=new UserDetails(uri,Name,UserID);
+        userinfo=new UserDetails(uri,Name,UserID,CollegeName);
         Map<String,Object> postValues=userinfo.toMap();
 
         Map<String,Object> childUpdates=new HashMap<>();

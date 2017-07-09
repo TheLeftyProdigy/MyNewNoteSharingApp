@@ -39,6 +39,7 @@ public class DisplayOptionsFile extends AppCompatActivity implements View.OnClic
     DatabaseReference mDatabase;
     UserDetails userinfo;
     String UserID;
+    String CollegeName="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -126,7 +127,7 @@ public class DisplayOptionsFile extends AppCompatActivity implements View.OnClic
     {
 
         String Key=mDatabase.child(UserID).push().getKey();
-        userinfo=new UserDetails(uri,name,UserID);
+        userinfo=new UserDetails(uri,name,UserID,CollegeName);
         Map<String,Object> postValues=userinfo.toMap();
 
         Map<String,Object> childUpdates=new HashMap<>();

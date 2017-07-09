@@ -15,21 +15,21 @@ import java.util.Map;
 public class FileDetails {
 
     private String Title;
-    private String Tag;
     private String ImageURI;
     private String Subject;
     private String UserID;
     private String Type;
+    private String Tags;
 
     public FileDetails()
     {
 
     }
 
-    public FileDetails(String Title,String Tag,String ImageURI,String Subject,String UserID,String Type)
+    public FileDetails(String Title,String Tags,String ImageURI,String Subject,String UserID,String Type)
     {
         this.Title=Title;
-        this.Tag=Tag;
+        this.Tags=Tags;
         this.ImageURI= ImageURI;
         this.Subject=Subject;
         this.UserID=UserID;
@@ -41,9 +41,9 @@ public class FileDetails {
         return Title;
     }
 
-    public String getTag()
+    public String getTags()
     {
-        return Tag;
+        return Tags;
     }
 
     public String getImageURI()
@@ -56,7 +56,7 @@ public class FileDetails {
         return Subject;
     }
 
-    public String gettype()
+    public String getType()
     {
         return Type;
     }
@@ -69,7 +69,7 @@ public class FileDetails {
     {
         HashMap<String,Object>result=new HashMap<>();
         result.put("Subject",Subject);
-        result.put("Tags",Tag);
+        result.put("Tags",Tags);
         result.put("Title",Title);
         result.put("ImageURI",ImageURI);
         result.put("UserID",UserID);

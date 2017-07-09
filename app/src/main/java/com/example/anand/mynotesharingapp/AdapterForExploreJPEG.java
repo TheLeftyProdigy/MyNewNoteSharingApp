@@ -1,15 +1,16 @@
 package com.example.anand.mynotesharingapp;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -46,9 +47,11 @@ public class AdapterForExploreJPEG extends RecyclerView.Adapter<AdapterForExplor
     public void onBindViewHolder(ViewHolder holder, int position) {
         final FileDetails upload = uploads.get(position);
 
+
+
         holder.textViewTitle.setText(upload.getTitle());
         holder.textViewSubject.setText(upload.getSubject());
-        holder.textViewTag.setText(upload.getTag());
+        holder.textViewTag.setText(upload.getTags());
         Glide.with(context).load(upload.getImageURI()).into(holder.imageView);
         holder.imageView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,6 +60,15 @@ public class AdapterForExploreJPEG extends RecyclerView.Adapter<AdapterForExplor
 
             }
         });
+
+
+        holder.downloadButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openBrowser(context,upload.getImageURI());
+            }
+        });
+
 
 
     }
@@ -72,6 +84,8 @@ public class AdapterForExploreJPEG extends RecyclerView.Adapter<AdapterForExplor
         public ImageView imageView;
         public TextView textViewSubject;
         public TextView textViewTag;
+        public Button downloadButton;
+        public Typeface typeFace;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -80,7 +94,11 @@ public class AdapterForExploreJPEG extends RecyclerView.Adapter<AdapterForExplor
             imageView = (ImageView) itemView.findViewById(R.id.imageView);
             textViewSubject=(TextView) itemView.findViewById(R.id.textViewSubject);
             textViewTag=(TextView) itemView.findViewById(R.id.textViewTag);
-
+            downloadButton=(Button)itemView.findViewById(R.id.downloadbutton);
+            typeFace=Typeface.createFromAsset(itemView.getContext().getAssets(),"fonts/robotoslabreg.ttf");
+            textViewTitle.setTypeface(typeFace);
+            textViewSubject.setTypeface(typeFace);
+            textViewTag.setTypeface(typeFace);
         }
     }
     public static void openBrowser(final Context context, String url)

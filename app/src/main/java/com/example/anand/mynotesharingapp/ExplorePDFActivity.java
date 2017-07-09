@@ -70,7 +70,7 @@ public class ExplorePDFActivity extends AppCompatActivity {
                     FileDetails upload = postSnapshot.getValue(FileDetails.class);
 
 
-                    if(upload.gettype().equals(pdf))
+                    if(upload.getType().equals(pdf))
                     uploads.add(upload);
 
                 }

@@ -1,10 +1,12 @@
 package com.example.anand.mynotesharingapp;
 
 import android.app.ProgressDialog;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -41,6 +43,10 @@ public class ExploreJPEGActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.recyclerviewtemplate);
 
+        TextView tv=(TextView)findViewById(R.id.templatetv);
+
+        Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/robotoslabreg.ttf");
+        tv.setTypeface(typeFace);
 
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
@@ -68,7 +74,9 @@ public class ExploreJPEGActivity extends AppCompatActivity {
                 for (DataSnapshot postSnapshot : snapshot.getChildren()) {
                     FileDetails upload = postSnapshot.getValue(FileDetails.class);
 
-                    if(upload.gettype().equals(img))
+
+
+                    if(upload.getType().equals(img))
                     uploads.add(upload);
 
                 }
@@ -77,6 +85,7 @@ public class ExploreJPEGActivity extends AppCompatActivity {
 
                 //adding adapter to recyclerview
                 recyclerView.setAdapter(adapter);
+                recyclerView.setNestedScrollingEnabled(false);
             }
 
             @Override

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <tabs>
+        <tab
+            id="@+id/tab_home"
+            icon="@mipmap/ic_home"
+            barColorWhenSelected="#383838"
+            title="Home"
+
+            />
+        <tab
+            id="@+id/tab_addfile"
+            icon="@mipmap/ic_addfile"
+            barColorWhenSelected="#002D40"
+            title="Add a File"
+            />
+        <tab
+            id="@+id/tab_search"
+            icon="@mipmap/ic_search"
+            barColorWhenSelected="#247061"
+            title="Explore"
+            />
+        <tab
+            id="@+id/tab_profile"
+            icon="@mipmap/ic_profile"
+            barColorWhenSelected="#002D40"
+            title="Profile"
+            />
+    </tabs>
+</PreferenceScreen>

@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout   xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#15A6B7">
+
+
+
+    <android.support.v4.widget.NestedScrollView
+
+        android:id="@+id/NSV"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="60dp">
+
+
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+
+            <android.support.v7.widget.CardView
+                android:layout_marginTop="16dp"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:elevation="12dp"
+                android:id="@+id/view2"
+                android:layout_gravity="center"
+                app:cardCornerRadius="100dp"
+                android:layout_centerHorizontal="true"
+                android:innerRadius="0dp"
+                android:shape="ring"
+                android:thicknessRatio="1.9">
+                <ImageButton
+                    android:layout_height="200dp"
+                    android:layout_width="200dp"
+                    android:id="@+id/imageView1"
+                    android:src="@drawable/placeholder"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true">
+                </ImageButton>
+
+
+
+
+
+            </android.support.v7.widget.CardView>
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="Display Name"
+                android:textSize="40sp"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#FFFFFF"
+                android:id="@+id/displayname"
+                android:layout_margin="8sp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#FFFFFF"
+                android:id="@+id/txtinfo4"
+                android:text="Your name that will be visible to everyone."
+                android:layout_margin="8dp"
+                android:textSize="30sp"
+                />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="College Name"
+                android:textSize="40sp"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#FFFFFF"
+                android:id="@+id/collegename"
+                android:layout_margin="8sp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Save!"
+                android:layout_gravity="center"
+                android:textSize="50sp"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#FFFFFF"
+                android:id="@+id/savebutton"
+                android:clickable="true"
+                android:layout_margin="8sp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Logout"
+                android:layout_gravity="center"
+                android:textSize="30sp"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#FFFFFF"
+                android:id="@+id/logout"
+                android:clickable="true"
+                android:layout_margin="8sp"/>
+
+
+
+        </LinearLayout>
+
+    </android.support.v4.widget.NestedScrollView>
+
+    <com.roughike.bottombar.BottomBar
+        android:id="@+id/bottomBar"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        app:bb_tabXmlResource="@xml/bottombar_tabs"
+        app:bb_activeTabColor="#FFFFFF"
+        app:bb_inActiveTabColor="#D9ECF2"
+        />
+</RelativeLayout>

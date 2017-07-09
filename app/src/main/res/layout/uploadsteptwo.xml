@@ -41,20 +41,43 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Related Tags"
+        android:text="Related Tags/Keywords"
         android:textSize="25dp"
         android:layout_marginLeft="42dp"
         android:layout_marginTop="60px"
         android:textColor="#3D3566"/>
 
-    <EditText
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:layout_marginLeft="42dp"
+            android:hint="Enter the tags"
+            android:id="@+id/tags"
+            />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:text="Add"
+            android:layout_marginLeft="60dp"
+            android:id="@+id/tagbutton"
+            />
+
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="20dp"
-        android:layout_marginLeft="42dp"
-        android:hint="Enter Tags Here"
-        android:id="@+id/tags"
-        />
+        android:id="@+id/allTags"/>
 
 
     <Button
