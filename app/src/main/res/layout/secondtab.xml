@@ -58,30 +58,33 @@
                 android:textSize="30sp"
                 />
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:layout_height="wrap_content">
 
             <EditText
-                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:hint="Keywords"
                 android:textSize="50sp"
                 android:textColor="#FFFFFF"
                 android:textColorHint="#FFFFFF"
                 android:id="@+id/tags"
-                android:layout_margin="8sp"/>
+                android:layout_marginRight="60dp"
+                android:layout_margin="8sp"
+                android:layout_gravity="fill"
+                android:layout_width="250sp" />
 
                 <Button
                     android:layout_width="60dp"
                     android:layout_height="60dp"
                     android:background="@mipmap/ic_addfile"
+                    android:layout_toRightOf="@id/tags"
                     android:id="@+id/tagbutton"
                     android:backgroundTint="#FFFFFF"
-                    android:layout_marginLeft="20dp"/>
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="20dp"/>
 
-            </LinearLayout>
+            </RelativeLayout>
 
             <TextView
                 android:layout_width="wrap_content"

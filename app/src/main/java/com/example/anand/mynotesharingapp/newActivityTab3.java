@@ -2,21 +2,36 @@ package com.example.anand.mynotesharingapp;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Typeface;
 import android.media.Image;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.annotation.IdRes;
 import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.widget.NestedScrollView;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.MotionEvent;
+import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ScrollView;
+import android.widget.SearchView;
 import android.widget.TextView;
 
+import com.algolia.instantsearch.helpers.Searcher;
+import com.algolia.instantsearch.ui.InstantSearchHelper;
+import com.algolia.search.saas.AlgoliaException;
+import com.algolia.search.saas.Client;
+import com.algolia.search.saas.CompletionHandler;
+import com.algolia.search.saas.Index;
+import com.algolia.search.saas.Query;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
@@ -31,6 +46,9 @@ import com.google.firebase.database.ValueEventListener;
 import com.roughike.bottombar.BottomBar;
 import com.roughike.bottombar.OnTabSelectListener;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.w3c.dom.Text;
 
 import java.lang.reflect.Type;
@@ -71,11 +89,11 @@ public class newActivityTab3 extends AppCompatActivity {
 
     int s=0;
 
-    String b_name,b_photoUri;
-    String name,email;
     UserDetails userinfo;
     String UserID;
     String CollegeName="";
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,6 +107,7 @@ public class newActivityTab3 extends AppCompatActivity {
         }
 
 
+        isStoragePermissionGranted();
 
 
         mAuth=FirebaseAuth.getInstance();
@@ -96,8 +115,11 @@ public class newActivityTab3 extends AppCompatActivity {
         TextView tv1,tv2;
         TextView uname,welcome;
         ImageView iv;
+        SearchView sv;
         tv1=(TextView)findViewById(R.id.templatetv);
         tv2=(TextView)findViewById(R.id.templatetv2);
+        sv=(SearchView)findViewById(R.id.simpleSearchView);
+
 
         final BottomBar bottomBar = (BottomBar) findViewById(R.id.bottomBar);
         bottomBar.setDefaultTab(R.id.tab_search);
@@ -106,6 +128,9 @@ public class newActivityTab3 extends AppCompatActivity {
 
         tv1.setTypeface(typeFace);
         tv2.setTypeface(typeFace);
+
+
+
 
 
 
@@ -183,7 +208,7 @@ public class newActivityTab3 extends AppCompatActivity {
                     FileDetails upload = postSnapshot.getValue(FileDetails.class);
 
 
-                    if(upload.getType().equals(pdf))
+                    if((upload.getType().equals("pdf"))||(upload.getType().equals("docx"))||(upload.getType().equals("pptx"))||(upload.getType().equals("xlsx")))
                         uploads1.add(upload);
 
                 }
@@ -203,6 +228,225 @@ public class newActivityTab3 extends AppCompatActivity {
         });
 
 
+
+        //Code Start for Algolia
+
+        sv.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String SearchQueryInput) {
+                Client client = new Client("Y1HVY75FHB", "8899aad8d8168c5d6d78147d56912cb3");
+                Index index = client.getIndex("userinfo");
+                Query query = new Query(SearchQueryInput)
+                        .setAttributesToRetrieve("Subject", "Tags","Title")
+                        .setHitsPerPage(50);
+                index.searchAsync(query, new CompletionHandler() {
+                    @Override
+                    public void requestCompleted(JSONObject content, AlgoliaException error) {
+                        // [..]
+                        Log.d("algolia",content.toString());
+
+                        final JSONObject innerContent=content;
+
+                        mDatabase.addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(DataSnapshot snapshot) {
+                                //dismissing the progress dialog
+                                s++;
+                                uploads.clear();
+
+                                //iterating through all the values in database
+                                //iterating through all the values in database
+                                for (DataSnapshot postSnapshot : snapshot.getChildren()) {
+                                    FileDetails upload = postSnapshot.getValue(FileDetails.class);
+
+
+                                    if (upload.getType().equals(img)) {
+
+                                        try {
+                                            JSONArray arr=innerContent.getJSONArray("hits");
+
+                                            Log.d("JSONARRAY",arr.toString());
+                                            for(int i=0;i<arr.length();i++)
+                                            {
+
+
+                                                JSONObject innerjson=arr.getJSONObject(i);
+
+                                                if(innerjson.getJSONObject("_highlightResult").getJSONObject("ImageURI").get("value").toString().equals(upload.getImageURI()))
+                                                {
+
+                                                    uploads.add(upload);
+                                                }
+
+                                            }
+                                        } catch (JSONException e) {
+                                            e.printStackTrace();
+                                        }
+
+
+                                    }
+
+
+
+
+                                }
+                                //creating adapter
+                                adapter = new AdapterForExploreJPEG(newActivityTab3.this, uploads);
+
+                                //adding adapter to recyclerview
+                                recyclerView.setAdapter(adapter);
+                                recyclerView.setNestedScrollingEnabled(false);
+                            }
+
+                            @Override
+                            public void onCancelled(DatabaseError databaseError) {
+                                progressDialog.dismiss();
+                            }
+                        });
+
+
+
+                        mDatabase1.addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(DataSnapshot snapshot) {
+                                //dismissing the progress dialog
+                                uploads1.clear();
+                                //iterating through all the values in database
+                                for (DataSnapshot postSnapshot : snapshot.getChildren()) {
+                                    FileDetails upload = postSnapshot.getValue(FileDetails.class);
+
+
+                                    if((upload.getType().equals("pdf"))||(upload.getType().equals("docx"))||(upload.getType().equals("pptx"))||(upload.getType().equals("xlsx")))
+                                    {
+                                        try {
+                                            JSONArray arr=innerContent.getJSONArray("hits");
+
+                                            Log.d("JSONARRAY",arr.toString());
+                                            for(int i=0;i<arr.length();i++)
+                                            {
+
+
+                                                JSONObject innerjson=arr.getJSONObject(i);
+                                                if(innerjson.getJSONObject("_highlightResult").getJSONObject("ImageURI").get("value").toString().equals(upload.getImageURI()))
+                                                {
+
+                                                    uploads1.add(upload);
+                                                }
+
+                                            }
+                                        } catch (JSONException e) {
+                                            e.printStackTrace();
+                                        }
+
+
+                                    }
+
+
+                                }
+                                //creating adapter
+                                adapter1 = new AdapterForExplorePDF(newActivityTab3.this, uploads1);
+
+                                //adding adapter to recyclerview
+
+                                recyclerView1.setNestedScrollingEnabled(false);
+                                recyclerView1.setAdapter(adapter1);
+                            }
+
+                            @Override
+                            public void onCancelled(DatabaseError databaseError) {
+                                progressDialog.dismiss();
+                            }
+                        });
+
+
+                    }
+                });
+
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+
+        });
+
+        sv.setOnCloseListener(new SearchView.OnCloseListener() {
+            @Override
+            public boolean onClose() {
+
+                uploads.clear();
+                uploads1.clear();
+                //adding an event listener to fetch values
+                mDatabase.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot snapshot) {
+                        //dismissing the progress dialog
+
+
+                        //iterating through all the values in database
+                        //iterating through all the values in database
+                        for (DataSnapshot postSnapshot : snapshot.getChildren()) {
+                            FileDetails upload = postSnapshot.getValue(FileDetails.class);
+
+
+
+                            if(upload.getType().equals(img))
+                                uploads.add(upload);
+
+                        }
+                        //creating adapter
+                        adapter = new AdapterForExploreJPEG(newActivityTab3.this, uploads);
+
+                        //adding adapter to recyclerview
+                        recyclerView.setAdapter(adapter);
+                        recyclerView.setNestedScrollingEnabled(false);
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+                        progressDialog.dismiss();
+                    }
+                });
+
+                mDatabase1.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot snapshot) {
+                        //dismissing the progress dialog
+
+                        //iterating through all the values in database
+                        for (DataSnapshot postSnapshot : snapshot.getChildren()) {
+                            FileDetails upload = postSnapshot.getValue(FileDetails.class);
+
+
+                            if((upload.getType().equals("pdf"))||(upload.getType().equals("docx"))||(upload.getType().equals("pptx"))||(upload.getType().equals("xlsx")))
+                                uploads1.add(upload);
+
+                        }
+                        //creating adapter
+                        adapter1 = new AdapterForExplorePDF(newActivityTab3.this, uploads1);
+
+                        //adding adapter to recyclerview
+
+                        recyclerView1.setNestedScrollingEnabled(false);
+                        recyclerView1.setAdapter(adapter1);
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+                        progressDialog.dismiss();
+                    }
+                });
+
+
+
+                return false;
+            }
+        });
+
+
+        //Code End for Algolia
 
 
         //BottomBarNavigation
@@ -230,6 +474,26 @@ public class newActivityTab3 extends AppCompatActivity {
 
     }
 
+    String TAG="OK";
+    public boolean isStoragePermissionGranted(){
+        if (Build.VERSION.SDK_INT >= 23) {
+            if (checkSelfPermission(android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                    == PackageManager.PERMISSION_GRANTED) {
+                Log.v(TAG,"Permission is granted");
+                return true;
+            } else {
+
+                Log.v(TAG,"Permission is revoked");
+                ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
+                return false;
+            }
+        }
+        else { //permission is automatically granted on sdk<23 upon installation
+            Log.v(TAG,"Permission is granted");
+            return true;
+        }
+    }
+
     public void writeNewPost(String name,String uri)
     {
 
@@ -253,5 +517,7 @@ public class newActivityTab3 extends AppCompatActivity {
         startMain.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(startMain);
     }
+
+
 
 }

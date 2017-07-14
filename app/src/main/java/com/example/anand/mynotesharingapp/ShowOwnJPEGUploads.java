@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -62,7 +61,7 @@ public class ShowOwnJPEGUploads extends AppCompatActivity {
         FirebaseUser user= FirebaseAuth.getInstance().getCurrentUser();
         UserID=user.getUid();
 
-        //Query query = mDatabase.orderByChild("title").equalTo(UserID);
+
         final String img="img";
 
 
@@ -80,7 +79,7 @@ public class ShowOwnJPEGUploads extends AppCompatActivity {
 
                     FileDetails upload = postSnapshot.getValue(FileDetails.class);
 
-                    if(upload.getUserID().equals(UserID)&&upload.gettype().contentEquals(img)) {
+                    if(upload.getUserID().equals(UserID)&&upload.getType().contentEquals(img)) {
                         uploads.add(upload);
                     }
 

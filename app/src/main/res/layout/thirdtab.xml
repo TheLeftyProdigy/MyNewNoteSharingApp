@@ -5,6 +5,11 @@
     android:layout_height="match_parent"
     android:background="#D9EEF3">
 
+    <SearchView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/simpleSearchView"
+        />
 
 
     <android.support.v4.widget.NestedScrollView
@@ -12,7 +17,9 @@
         android:id="@+id/NSV"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
+        android:layout_below="@id/simpleSearchView"
         android:layout_marginBottom="60dp">
+
 
 
 
@@ -20,6 +27,7 @@
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
 
 
             <TextView

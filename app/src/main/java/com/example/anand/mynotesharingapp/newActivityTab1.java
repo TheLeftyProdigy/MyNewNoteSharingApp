@@ -258,7 +258,7 @@ public class newActivityTab1 extends AppCompatActivity {
 
                     FileDetails upload = postSnapshot.getValue(FileDetails.class);
 
-                    if(upload.getUserID().equals(UserID)&&upload.getType().equals(pdf)) {
+                    if(upload.getUserID().equals(UserID)&&((upload.getType().equals("pdf"))||(upload.getType().equals("docx"))||(upload.getType().equals("pptx"))||(upload.getType().equals("xlsx")))) {
                         uploads1.add(upload);
                     }
 

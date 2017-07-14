@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.anand.mynotesharingapp">
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    <uses-permission android:name="android.permission.BIND_TELECOM_CONNECTION_SERVICE" />
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.BIND_TELECOM_CONNECTION_SERVICE"/>
     <uses-permission android:name="android.permission.MANAGE_DOCUMENTS"/>
 
     <permission android:protectionLevel="signature"
@@ -39,8 +40,15 @@
             android:theme="@style/Base.Theme.AppCompat"/>
         <activity android:name=".newActivityTab1"/>
         <activity android:name=".newActivityTab2"/>
-        <activity android:name=".newActivityTab3"/>
-        <activity android:name=".newActivityTab4"/>
+        <activity android:name=".newActivityTab3">
+
+
+
+        </activity>
+        <activity android:name=".newActivityTab4">
+
+
+        </activity>
 
         <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id"/>
 

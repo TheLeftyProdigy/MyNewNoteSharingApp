@@ -9,6 +9,7 @@ import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Typeface;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.provider.MediaStore;
@@ -103,32 +104,6 @@ public class newActivityTab4 extends AppCompatActivity implements View.OnClickLi
 
 
 
-        if (ContextCompat.checkSelfPermission(this,
-                android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                != PackageManager.PERMISSION_GRANTED) {
-
-            // Should we show an explanation?
-            if (ActivityCompat.shouldShowRequestPermissionRationale(this,
-                    android.Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
-
-                // Show an explanation to the user *asynchronously* -- don't block
-                // this thread waiting for the user's response! After the user
-                // sees the explanation, try again to request the permission.
-
-            } else {
-
-                // No explanation needed, we can request the permission.
-
-                ActivityCompat.requestPermissions(this,
-                        new String[]{android.Manifest.permission.WRITE_EXTERNAL_STORAGE},
-                        1);
-
-                // MY_PERMISSIONS_REQUEST_READ_CONTACTS is an
-                // app-defined int constant. The callback method gets the
-                // result of the request.
-            }
-        }
-
         savebutton=(TextView)findViewById(R.id.savebutton);
         name=(EditText)findViewById(R.id.displayname);
         imageButton=(ImageButton) findViewById(R.id.imageView1);
@@ -140,6 +115,12 @@ public class newActivityTab4 extends AppCompatActivity implements View.OnClickLi
         name.setText(curruser);
 
 
+//        isStoragePermissionGranted();
+//        if(b==true)
+//      {
+//           System.out.println("Permission is there!");
+//       }
+//        else System.out.println("Permission not found");
 
         mDatabase.addValueEventListener(new ValueEventListener() {
             @Override
@@ -306,6 +287,8 @@ public class newActivityTab4 extends AppCompatActivity implements View.OnClickLi
             Toast.makeText(newActivityTab4.this, "Cancelling, required permissions are not granted", Toast.LENGTH_LONG).show();
         }
     }
+
+
 
     /**
      * Start crop image activity for the given image.
@@ -496,5 +479,9 @@ public class newActivityTab4 extends AppCompatActivity implements View.OnClickLi
         startMain.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(startMain);
     }
+
+
+
+
 
 }

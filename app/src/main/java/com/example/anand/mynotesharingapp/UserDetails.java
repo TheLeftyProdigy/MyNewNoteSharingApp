@@ -14,23 +14,29 @@ public class UserDetails {
     private String ImageURI;
     private String Name;
     private String UserID;
+    private String CollegeName;
 
     public UserDetails()
     {
 
     }
 
-    public UserDetails(String ImageURI,String Name,String UserID)
+    public UserDetails(String ImageURI,String Name,String UserID,String CollegeName)
     {
         this.ImageURI=ImageURI;
         this.Name=Name;
         this.UserID=UserID;
+        this.CollegeName=CollegeName;
 
     }
 
     public String getName(){return Name;}
 
     public String getImageURI(){return ImageURI;}
+
+    public String getCollegeName(){return CollegeName;}
+
+    public String getUserID(){return UserID;}
 
     @Exclude
     public Map<String,Object>toMap()
@@ -39,6 +45,7 @@ public class UserDetails {
         result.put("Name",Name);
         result.put("ImageURI",ImageURI);
         result.put("UserID",UserID);
+        result.put("CollegeName",CollegeName);
         return result;
     }
 

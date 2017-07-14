@@ -44,6 +44,14 @@
                 android:layout_marginStart="12px"
                 android:textColor="#111111"
                 />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Type:"
+                android:id="@+id/textViewType3"
+                android:layout_marginStart="12px"
+                android:textColor="#111111"
+                />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -51,6 +59,15 @@
                 android:layout_gravity="center"
                 android:orientation="horizontal"
                 android:layout_marginBottom="8dp">
+                <Button
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:layout_marginRight="25dp"
+                    android:background="@mipmap/ic_preview"
+                    android:id="@+id/previewbutton3"
+                    android:layout_weight="1"/>
+
                 <Button
                     android:layout_width="30dp"
                     android:layout_height="30dp"

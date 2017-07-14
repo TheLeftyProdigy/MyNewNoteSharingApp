@@ -249,15 +249,35 @@ public class newActivityTab2 extends AppCompatActivity implements View.OnClickLi
 
             final ProgressDialog progressDialog = new ProgressDialog(this);
 
-            if ((getFileExtension(filePath) == "jpeg") || (getFileExtension(filePath) == "png") || (getFileExtension(filePath) == "gif") || (getFileExtension(filePath) == "jpg")) {
+            if ((getFileExtension(filePath) == "jpeg") || (getFileExtension(filePath) == "png") ||(getFileExtension(filePath) == "jpg")) {
                 type = "img";
                 progressDialog.setTitle("Uploading");
                 progressDialog.show();
-            } else if ((getFileExtension(filePath) == "pdf") || (getFileExtension(filePath) == "pptx") || (getFileExtension(filePath) == "docx") || (getFileExtension(filePath) == "xlsx")) {
+            } else if ((getFileExtension(filePath) == "pdf"))
+            {
                 type = "pdf";
                 progressDialog.setTitle("Uploading");
                 progressDialog.show();
-            } else {
+            }
+            else if ((getFileExtension(filePath) == "pptx"))
+            {
+                type = "pptx";
+                progressDialog.setTitle("Uploading");
+                progressDialog.show();
+            }
+            else if ((getFileExtension(filePath) == "docx"))
+            {
+                type = "docx";
+                progressDialog.setTitle("Uploading");
+                progressDialog.show();
+            }
+            else if ((getFileExtension(filePath) == "xlsx"))
+            {
+                type = "xlsx";
+                progressDialog.setTitle("Uploading");
+                progressDialog.show();
+            }
+            else  {
                 Toast.makeText(getApplicationContext(), "Wrong File Option! "+getFileExtension(filePath)+" format is not supported!", Toast.LENGTH_LONG).show();
                 filePath=null;
                 killActivity();
@@ -280,7 +300,7 @@ public class newActivityTab2 extends AppCompatActivity implements View.OnClickLi
 
                                 //creating the upload object to store uploaded image details
                                 Uri downloadUrl = taskSnapshot.getDownloadUrl();
-                                writeNewPost(Title, Tag, String.valueOf(downloadUrl), Subject, type);
+                                writeNewPost(Title, stringfortv, String.valueOf(downloadUrl), Subject, type);
 
 
 //ok

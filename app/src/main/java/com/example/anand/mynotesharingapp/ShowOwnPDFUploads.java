@@ -79,7 +79,7 @@ public class ShowOwnPDFUploads extends AppCompatActivity {
 
                     FileDetails upload = postSnapshot.getValue(FileDetails.class);
 
-                    if(upload.getUserID().equals(UserID)&&upload.gettype().equals(pdf)) {
+                    if(upload.getUserID().equals(UserID)&&upload.getType().equals(pdf)) {
                         uploads.add(upload);
                     }
 
